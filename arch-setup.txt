@@ -1,0 +1,13 @@
+# bluetooth moue
+pacman -S bluez bluez-utils
+systemctl enable bluetooth.service
+bluetoothctl
+agent on
+default-agent
+scan on
+trust XX:XX
+pair XX:XX
+connect XX:XX
+edit /etc/bluetooth/main.conf
+Add under [Policy]:
+AutoEnable=true
