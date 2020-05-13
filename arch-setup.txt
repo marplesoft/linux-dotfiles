@@ -11,3 +11,8 @@ connect XX:XX
 edit /etc/bluetooth/main.conf
 Add under [Policy]:
 AutoEnable=true
+
+# scroll direction (with libinput)
+Put in ~/.xinitrc
+MOUSE_DEV_ID=$(xinput --list | grep "Bluetooth Mouse M336/M337/M535 Mouse" | awk '{split($7,a,"="); print a[2]}')
+xinput list-props $MOUSE_DEV_ID | grep "Natural Scrolling Enabled" | grep -oP "(?<=Natural Scrolling Enabled \().*(?=\))"
