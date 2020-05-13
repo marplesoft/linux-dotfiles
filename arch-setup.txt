@@ -1,4 +1,68 @@
-# bluetooth moue
+# download the iso
+Download arch iso
+Verify download signature:
+gpg --keyserver-options auto-key-retrieve --verify archlinux-.....iso.sig
+Write image using dd
+
+# boot off the usb
+Reboot holding Fn-F12
+Switch to Arch Linux option
+
+# get internet
+rfkill unblock all
+wifi-menu
+Wait few seconds
+ping google.com
+
+# activate ntp to set correct time
+timedatectl set-ntp true
+
+# setup disk partitions
+fdisk /dev/sda
+d to delete partions
+n
+ +512M
+t 1
+n *
+t 20
+w
+mkfs.fat -F32 /dev/sda1
+mkfs.ext4 /dev/sda2
+
+# optimize arch mirrors
+pacman -Syy
+pacman -S reflector
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.orig
+reflector -c Canada -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
+
+# bootstrap os
+mount /dev/sda2 /mnt
+pacstrap /mnt base linux linux-firmware vim
+genfstab -U /mnt >> /mnt/etc/fstab
+
+# chroot into the new install
+# below this we're affecting the new install
+arch-chroot /mnt
+
+# clock setup
+timedatectl set-timezone America/Vancouver
+hwclock --systohc
+
+# local setup
+vim /etc/locale.gen
+uncomment en_US.UTF-8 UTF-8
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+export LANG=en_US.UTF-8
+
+# network setup
+echo yoga > /etc/hostname
+vim /etc/hosts
+ 127.0.0.1 localhost
+ ::1 localhost
+ 127.0.1.1 yoga
+
+# bluetooth mouse
 pacman -S bluez bluez-utils
 systemctl enable bluetooth.service
 bluetoothctl
