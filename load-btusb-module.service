@@ -3,7 +3,7 @@ Description=Loads btusb kernel module
 After=network-online.target
 [Service]
 Type=simple
-ExecStart=mobprobe btusb
+ExecStart=modprobe btusb
 
 [Install]
 WantedBy=multi-user.target
