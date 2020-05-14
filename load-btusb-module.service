@@ -1,0 +1,9 @@
+[Unit]
+Description=Loads btusb kernel module
+After=network-online.target
+[Service]
+Type=simple
+ExecStart=mobprobe btusb
+
+[Install]
+WantedBy=multi-user.target
