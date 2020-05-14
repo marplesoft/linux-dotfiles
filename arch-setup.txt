@@ -63,6 +63,7 @@ vim /etc/hosts
  127.0.1.1 yoga
 
 # bluetooth mouse
+cp blacklist_btusb.conf /etc/modprobe.d/
 pacman -S bluez bluez-utils
 systemctl enable bluetooth.service
 bluetoothctl
