@@ -67,7 +67,8 @@ vim /etc/hosts
 
 # bluetooth mouse
 cp blacklist_btusb.conf /etc/modprobe.d/
-cp load-btusb-module.service /etc/systemd/system/
+cp reload-btusb.service /etc/systemd/system/
+systemctl enable reload-btusb.service
 pacman -S bluez bluez-utils
 systemctl enable bluetooth.service
 bluetoothctl
