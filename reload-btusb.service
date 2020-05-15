@@ -1,0 +1,9 @@
+[Unit]
+Description=Reloads btusb kernel module
+After=network-online.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/reload-btusb.sh
+
+[Install]
+WantedBy=multi-user.target
