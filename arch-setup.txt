@@ -87,3 +87,6 @@ useradd -m -G wheel ryan
 
 # touchpad and mouse tweaks
 cp 99-synaptics-overrides.conf /etc/X11/xorg.conf.d/
+
+# hidpi setup
+sed "s/#xft-dpi.*/xft-dpi=192/" lightdm-gtk-greeter.conf
