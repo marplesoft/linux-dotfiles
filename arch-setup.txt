@@ -92,9 +92,9 @@ cp 99-synaptics-overrides.conf /etc/X11/xorg.conf.d/
 pacman -S xorg openbox lightdm lightdm-gtk-greeter
 
 # hidpi setup
-sed "s/^# display-setup-script.*/display-setup-script=xrandr --output eDP-1 --scale 1.14x1.14/" /etc/lightdm/lightdm.conf
+sed -i "s/^#display-setup-script.*/display-setup-script=xrandr --output eDP-1 --scale 1.14x1.14/" /etc/lightdm/lightdm.conf
 sed -i "s/#xft-dpi.*/xft-dpi=192/" /etc/lightdm/lightdm-gtk-greeter.conf
-sed "s/^Exec=.*/Exec=env GDK_SCALE=2 GDK_DPI_SCALE=0.5 lightdm-gtk-greeter/" /usr/share/xgreeters/lightdm-gtk-greeter.desktop
+sed -i "s/^Exec=.*/Exec=env GDK_SCALE=2 GDK_DPI_SCALE=0.5 lightdm-gtk-greeter/" /usr/share/xgreeters/lightdm-gtk-greeter.desktop
 cp hidpi.sh /etc/profile.d/
 cp hidpi.sh /root/.Xsession
 cp .Xresources /home/ryan/
