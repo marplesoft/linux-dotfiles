@@ -91,4 +91,5 @@ cp 99-synaptics-overrides.conf /etc/X11/xorg.conf.d/
 # hidpi setup
 sed -i "s/#xft-dpi.*/xft-dpi=192/" /etc/lightdm/lightdm-gtk-greeter.conf
 cp hidpi.sh /etc/profile.d/
+cp hidpi.sh /root/.Xsession
 cp .Xresources /home/ryan/
