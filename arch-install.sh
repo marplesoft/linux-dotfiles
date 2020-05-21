@@ -1,9 +1,3 @@
-# download the iso
-Download arch iso
-Verify download signature:
-gpg --keyserver-options auto-key-retrieve --verify archlinux-.....iso.sig
-Write image using dd
-
 # boot off the usb
 Reboot holding Fn-F12
 Switch to Arch Linux option
