@@ -9,7 +9,7 @@ DISK=/dev/sda
 set +e
 while parted -s $DISK rm 1; do :; done
 set -e
-parted -s $DISK mklabel gpt
+# assume this is already done since it fails if already there:  parted -s $DISK mklabel gpt
 parted -s $DISK mkpart ESP fat32 1MiB 513MiB
 parted -s $DISK mkpart primary ext4 513MiB 100%
 yes | mkfs.fat -F32 /dev/sda1
