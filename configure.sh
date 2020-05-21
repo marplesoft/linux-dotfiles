@@ -1,33 +1,44 @@
 set -e
 set -x
 
+# configure wifi
+cp home.netctl /etc/netctl/home
+read -p "Wifi SSID: " SSID
+read -p "Wifi Key: " SSID-KEY
+sed -i "s/%SSID%/$SSID/" /etc/netctl/home
+sed -i "s/%KEY%/$SSID-KEY/" /etc/netctl/home
+netctl start home
+netctl enable home
+
 # setup reflector (again, now in the target disk)
-pacman -S --nconfirm reflector
+pacman -S --noconfirm reflector
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.orig
 reflector -c Canada -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
 # install some stuff
 pacman -S --noconfirm base-devel git
 
-# # bluetooth mouse
-# pacman -S --noconfirm bluez bluez-utils
-# cp blacklist_btusb.conf /etc/modprobe.d/
-# cp reload-btusb.service /etc/systemd/system/
-# systemctl enable reload-btusb.service
-# systemctl start bluetooth.service
-# systemctl enable bluetooth.service
-# bluetoothctl << EOF
+# bluetooth mouse
+pacman -S --noconfirm bluez bluez-utils
+cp blacklist_btusb.conf /etc/modprobe.d/
+cp reload-btusb.service /etc/systemd/system/
+cp reload-btusb.sh /usr/bin/
+systemctl enable reload-btusb.service
+systemctl start bluetooth.service
+systemctl enable bluetooth.service
+bluetoothctl << EOF
 
-# agent on
-# default-agent
-# scan on
-# trust XX:XX
-# pair XX:XX
-# connect XX:XX
-# edit /etc/bluetooth/main.conf
-# Add under [Policy]:
-# AutoEnable=true
-# EOF
+agent on
+default-agent
+scan on
+trust XX:XX
+pair XX:XX
+connect XX:XX
+edit /etc/bluetooth/main.conf
+Add under [Policy]:
+AutoEnable=true
+EOF
+
 # # setup users
 # useradd -m -G wheel ryan
 
