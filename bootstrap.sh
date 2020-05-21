@@ -12,8 +12,8 @@ set -e
 parted -s $DISK mklabel gpt
 parted -s $DISK mkpart ESP fat32 1MiB 513MiB
 parted -s $DISK mkpart primary ext4 513MiB 100%
-mkfs.fat -F32 /dev/sda1
-mkfs.ext4 /dev/sda2
+mkfs.fat -F -F32 /dev/sda1
+mkfs.ext4 -F /dev/sda2
 
 # optimize arch mirrors
 pacman -Syy
