@@ -14,6 +14,7 @@ echo LANG=en_US.UTF-8 > /etc/locale.conf
 export LANG=en_US.UTF-8
 
 # network setup
+pacman -S --noconfirm netctl wpa_supplicant dhcpcd dialog
 echo yoga > /etc/hostname
 cat > /etc/hosts << EOF
 127.0.0.1 localhost
