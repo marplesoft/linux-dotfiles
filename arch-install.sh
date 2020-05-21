@@ -40,7 +40,7 @@ reflector -c Canada -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
 # bootstrap os
 mount /dev/sda2 /mnt
-pacstrap /mnt base linux linux-firmware vim
+pacstrap /mnt base linux linux-firmware vim netctl wpa_supplicant dchpcd dialog
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # chroot into the new install
@@ -51,7 +51,7 @@ arch-chroot /mnt
 timedatectl set-timezone America/Vancouver
 hwclock --systohc
 
-# local setup
+# locale setup
 vim /etc/locale.gen
 uncomment en_US.UTF-8 UTF-8
 locale-gen
