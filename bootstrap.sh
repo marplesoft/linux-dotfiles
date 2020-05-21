@@ -9,9 +9,9 @@ DISK=/dev/sda
 set +e
 while parted -s $DISK rm 1; do :; done
 set -e
-parted $DISK mklabel gpt
-parted $DISK mkpart ESP fat32 1MiB 513MiB
-parted $DISK mkpart primary ext4 513MiB 100%
+parted -s $DISK mklabel gpt
+parted -s $DISK mkpart ESP fat32 1MiB 513MiB
+parted -s $DISK mkpart primary ext4 513MiB 100%
 mkfs.fat -F32 /dev/sda1
 mkfs.ext4 /dev/sda2
 
