@@ -22,4 +22,4 @@ cat > /etc/hosts << EOF
 127.0.1.1 yoga
 EOF
 
-echo "Set a root password now with passwd..."
+echo "Set a root password now with passwd then exit the chroot..."
