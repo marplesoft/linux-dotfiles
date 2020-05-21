@@ -1,22 +1,23 @@
+set -e
+set -x
+
 # activate ntp to set correct time
 timedatectl set-ntp true
 
-# setup disk partitions
-fdisk /dev/sda
-d to delete partions
-n
- +512M
-t 1
-n *
-t 20
-w
+DISK=/dev/sda
+# remove all existing partitions
+set +e
+while parted $DISK rm 1; do:; done
+set -e
+parted $DISK mklabel gpt
+parted $DISK mkpart ESP fat32 1MiB 513MiB
+parted $DISK mkpart primary ext4 513MiB 100%
 mkfs.fat -F32 /dev/sda1
 mkfs.ext4 /dev/sda2
 
 # optimize arch mirrors
 pacman -Syy
-pacman -S reflector
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.orig
+pacman -S --nconfirm reflector
 reflector -c Canada -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
 # bootstrap os
@@ -45,6 +46,11 @@ vim /etc/hosts
  127.0.0.1 localhost
  ::1 localhost
  127.0.1.1 yoga
+ 
+# for later
+# pacman -S --nconfirm reflector
+#cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.orig
+#reflector -c Canada -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
 # bluetooth mouse
 cp blacklist_btusb.conf /etc/modprobe.d/
