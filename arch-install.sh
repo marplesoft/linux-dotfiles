@@ -1,16 +1,3 @@
-# boot off the usb
-Reboot holding Fn-F12
-Switch to Arch Linux option
-
-# get internet
-rfkill unblock all
-wifi-menu
-Wait few seconds
-ping google.com
-
-# get git to can pull down this repo
-pacman -S git
-
 # activate ntp to set correct time
 timedatectl set-ntp true
 
