@@ -33,6 +33,6 @@ Wait few seconds
     
 # Run the setup script
 
-   cd linux-dotfiles
-   ./initial-setup.sh
+    cd linux-dotfiles
+    ./initial-setup.sh
 
