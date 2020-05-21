@@ -22,7 +22,7 @@ reflector -c Canada -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
 # bootstrap os
 mount /dev/sda2 /mnt
-pacstrap /mnt base linux linux-firmware vim netctl wpa_supplicant dchpcd dialog
+pacstrap /mnt base linux linux-firmware vim
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # copy this git repo into the new disk
