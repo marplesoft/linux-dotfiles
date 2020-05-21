@@ -26,11 +26,14 @@ pacman -S --nconfirm reflector
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.orig
 reflector -c Canada -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
+# install some stuff
+pacman -S --nocnofirm base-devel
+
 # bluetooth mouse
+pacman -S --noconfirm bluez bluez-utils
 cp blacklist_btusb.conf /etc/modprobe.d/
 cp reload-btusb.service /etc/systemd/system/
 systemctl enable reload-btusb.service
-pacman -S bluez bluez-utils
 systemctl enable bluetooth.service
 bluetoothctl
 agent on
