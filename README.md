@@ -35,5 +35,5 @@ Wait few seconds
 # Run the setup script
 
     cd linux-dotfiles
-    ./install.sh
+    ./bootstrap.sh
 
