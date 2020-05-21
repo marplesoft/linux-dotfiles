@@ -7,7 +7,7 @@ timedatectl set-ntp true
 DISK=/dev/sda
 # remove all existing partitions
 set +e
-while parted $DISK rm 1; do :; done
+while parted -s $DISK rm 1; do :; done
 set -e
 parted $DISK mklabel gpt
 parted $DISK mkpart ESP fat32 1MiB 513MiB
