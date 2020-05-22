@@ -29,15 +29,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 cp -r /root/linux-dotfiles /mnt/root/linux-dotfiles.sh
 
 # chroot into the new install
-arch-chroot /mnt
-
-#setup bootloader
-pacman -S --noconfirm grub efibootmgr
-mkdir /boot/efi
-mount /dev/sda1 /boot/efi
-grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi
-sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet i915.edp_vswing=2"' /etc/default/grub
-grub-mkconfig -o /boot/grub/grub.cfg
+arch-chroot /mnt /root/linux-dotfiles/start.sh
 
 set +x
 echo "Shutdown, remove the USB and then boot up!"
