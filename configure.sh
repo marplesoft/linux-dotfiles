@@ -31,15 +31,18 @@ systemctl enable reload-btusb.service
 systemctl start bluetooth.service
 systemctl enable bluetooth.service
 sleep 5
-MOUSE=34:88:5D:AD:1A:4D
-bluetoothctl << EOF
-power on
-agent on
-default-agent
-trust $MOUSE
-pair $MOUSE
-connect $MOUSE
-exit
+MOUSE='34:88:5D:AD:1A:4D'
+read -p "Put your mouse in pairing mode and press enter..."
+{
+    printf "power on\n"
+    printf "agent on\n"
+    printf "default-agent\n"
+    printf "scan on\n"
+    sleep 8
+    printf "trust $MOUSE\n"
+    printf "pair $MOUSE\n"
+    printf "connect $MOUSE\n"
+    printf "exit\n"
 EOF
 sed -i "s/^#AutoEnable=false/AutoEnable=true/" /etc/bluetooth/main.conf
 
