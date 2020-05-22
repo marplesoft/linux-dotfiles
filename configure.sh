@@ -10,7 +10,7 @@ sed -i "s/%SSID%/$SSID/" /etc/netctl/home
 sed -i "s/%KEY%/$SSIDKEY/" /etc/netctl/home
 netctl start home
 netctl enable home
-sleep 5
+sleep 10
 
 # setup reflector (again, now in the target disk)
 pacman -S --noconfirm reflector
@@ -46,10 +46,12 @@ sed -i "s/^#AutoEnable=false/AutoEnable=true/" /etc/bluetooth/main.conf
 # setup users
 sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
 useradd -m -G wheel ryan
+# change this soon
+echo ryan:ryan | chpasswd ryan
 
 # setup gui
 pacman -S --noconfirm xorg
-pacman -S --noconfirm openbox lightdm lightdm-gtk-greeter obconf pcmanfm tint2 termite nitrogen
+pacman -S --noconfirm openbox lightdm lightdm-gtk-greeter obconf pcmanfm tint2 rxvt-unicode nitrogen
 systemctl enable lightdm.service
 
 # touchpad and mouse tweaks
