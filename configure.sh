@@ -60,7 +60,7 @@ echo ryan:ryan | chpasswd ryan
 
 # setup gui
 pacman -S --noconfirm xorg
-pacman -S --noconfirm openbox lightdm lightdm-gtk-greeter obconf pcmanfm tint2 gnome-terminal rvxt-unicode nitrogen
+pacman -S --noconfirm openbox lightdm lightdm-gtk-greeter obconf pcmanfm tint2 gnome-terminal rxvt-unicode nitrogen
 systemctl enable lightdm.service
 
 # touchpad and mouse tweaks
