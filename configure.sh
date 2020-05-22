@@ -46,6 +46,7 @@ useradd -m -G wheel ryan
 # setup gui
 pacman -S xorg
 pacman -S openbox lightdm lightdm-gtk-greeter obconf pcmanfm tint2 termite nitrogen
+systemctl enable lightdm.service
 
 # touchpad and mouse tweaks
 cp 99-synaptics-overrides.conf /etc/X11/xorg.conf.d/
