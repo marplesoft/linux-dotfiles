@@ -34,5 +34,3 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 # change this later
 echo root:root | chpasswd 
-
-exit
