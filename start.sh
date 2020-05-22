@@ -30,7 +30,7 @@ pacstrap /mnt base linux linux-firmware vim
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # copy this git repo into the new disk
-cp -r /root/linux-dotfiles /mnt/root/linux-dotfiles.sh
+cp -r /root/linux-dotfiles /mnt/root/linux-dotfiles
 
 # chroot into the new install
 arch-chroot /mnt /root/linux-dotfiles/setup.sh
