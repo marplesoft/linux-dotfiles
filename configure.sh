@@ -60,8 +60,17 @@ echo ryan:ryan | chpasswd ryan
 
 # setup gui
 pacman -S --noconfirm xorg
-pacman -S --noconfirm openbox lightdm lightdm-gtk-greeter obconf pcmanfm tint2 gnome-terminal rxvt-unicode nitrogen
+pacman -S --noconfirm openbox lightdm lightdm-gtk-greeter obconf obtheme tint2 gnome-terminal rxvt-unicode nitrogen
+pacman -S --noconfirm firefox thunar
 systemctl enable lightdm.service
+
+# install yay for AUR and then install some AUR packages
+git clone https://aur.archlinux.org/yay.git /tmp/yay
+pushd /tmp/yay
+makepkg -si --noconfirm
+popd
+gpg --recv-keys 8F173680 # needed for the following
+yay -S --noconfirm obtheme
 
 # touchpad and mouse tweaks
 cp 99-synaptics-overrides.conf /etc/X11/xorg.conf.d/
@@ -73,6 +82,8 @@ sed -i "s/^Exec=.*/Exec=env GDK_SCALE=2 GDK_DPI_SCALE=0.5 lightdm-gtk-greeter/" 
 cp hidpi.sh /etc/profile.d/
 cp hidpi.sh /root/.Xsession
 cp .Xresources /home/ryan/
+
+./link.sh
 
 set +x
 echo "Reboot!"
