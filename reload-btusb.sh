@@ -1,3 +1,5 @@
+#!/bin/bash
+
 modprobe -r btusb
 sleep 1
 modprobe btusb
