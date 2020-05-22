@@ -35,15 +35,21 @@ MOUSE='34:88:5D:AD:1A:4D'
 read -p "Put your mouse in pairing mode and press enter..."
 {
     printf "power on\n"
+    sleep 1
     printf "agent on\n"
+    sleep 1
     printf "default-agent\n"
+    sleep 1
     printf "scan on\n"
     sleep 8
     printf "trust $MOUSE\n"
+    sleep 1
     printf "pair $MOUSE\n"
+    sleep 1
     printf "connect $MOUSE\n"
+    sleep 1
     printf "exit\n"
-EOF
+} | bluetoothctl
 sed -i "s/^#AutoEnable=false/AutoEnable=true/" /etc/bluetooth/main.conf
 
 # setup users
