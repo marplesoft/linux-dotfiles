@@ -1,3 +1,5 @@
+#!/bin/bash -i 
+
 set -e
 set -x
 
@@ -61,7 +63,7 @@ echo ryan:ryan | chpasswd ryan
 # setup gui
 pacman -S --noconfirm xorg
 pacman -S --noconfirm openbox lightdm lightdm-gtk-greeter obconf tint2 gnome-terminal rxvt-unicode nitrogen
-pacman -S --noconfirm firefox thunar
+pacman -S --noconfirm firefox thunar 
 systemctl enable lightdm.service
 
 # touchpad and mouse tweaks
@@ -75,7 +77,9 @@ cp hidpi.sh /etc/profile.d/
 cp hidpi.sh /root/.Xsession
 cp .Xresources /home/ryan/
 
-runuser -l ryan -c ./configure_as_ryan.sh
+mv /root/linux-dotfiles/ /home/ryan
+pacman -S --noconfirm go #needed by yay later
+runuser -l ryan -c 'cd linux-dotfiles; ./configure_as_ryan.sh'
 
 set +x
 echo "Reboot!"
