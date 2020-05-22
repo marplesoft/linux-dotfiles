@@ -24,3 +24,7 @@ Switch to Arch Linux option
 
     wget -q -O - https://raw.githubusercontent.com/marplesoft/linux-dotfiles/master/start.sh | bash
 
+## After done, reboot and run:
+
+    cd /root/linux-dotfiles
+    ./configure.sh
