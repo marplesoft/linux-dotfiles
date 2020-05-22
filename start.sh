@@ -21,7 +21,6 @@ yes | mkfs.fat -F32 /dev/sda1
 yes | mkfs.ext4 -F /dev/sda2
 
 # optimize arch mirrors
-pacman -Syy
 pacman -S --noconfirm reflector
 reflector -c Canada -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
