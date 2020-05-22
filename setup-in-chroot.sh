@@ -1,4 +1,5 @@
 #!/bin/bash -i
+
 set -e
 set -x
 
