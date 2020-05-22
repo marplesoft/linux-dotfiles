@@ -33,7 +33,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 cp -r /root/linux-dotfiles /mnt/root/linux-dotfiles
 
 # chroot into the new install
-arch-chroot /mnt /root/linux-dotfiles/setup.sh
+arch-chroot /mnt /root/linux-dotfiles/setup-in-chroot.sh
 
 set +x
 echo "Shutdown, remove the USB and then boot up!"
