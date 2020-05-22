@@ -1,5 +1,3 @@
-# Laptop Arch Initial Setup Instructions
-
 ## Download Arch
 
 Download the iso: https://www.archlinux.org/download/
@@ -22,18 +20,7 @@ Switch to Arch Linux option
     rfkill unblock all
     wifi-menu
     
-Wait few seconds
+## Start script
 
-    ping google.com
-
-# Pull down this repo
-
-    pacman -Sy
-    pacman -S git
-    git clone https://github.com/marplesoft/linux-dotfiles.git
-    
-# Run the setup script
-
-    cd linux-dotfiles
-    ./bootstrap.sh
+    wget -q -O - https://raw.githubusercontent.com/marplesoft/linux-dotfiles/master/start.sh | bash
 
