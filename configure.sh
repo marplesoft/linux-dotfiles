@@ -77,7 +77,7 @@ cp hidpi.sh /etc/profile.d/
 cp hidpi.sh /root/.Xsession
 cp .Xresources /home/ryan/
 
-cp /root/linux-dotfiles/ /home/ryan
+cp -r /root/linux-dotfiles/ /home/ryan
 
 # install yay
 pacman -S --noconfirm go # dep of yay
