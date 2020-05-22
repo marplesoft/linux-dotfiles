@@ -31,8 +31,8 @@ sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAU
 grub-mkconfig -o /boot/grub/grub.cfg
 
 set +x
-echo "Set a root password:"
-passwd 
+read -p "Root password:" $ROOT_PWD 
+echo root:$ROOT_PWD | chpasswd 
 
 set -x
 exit

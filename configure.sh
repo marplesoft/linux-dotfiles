@@ -16,7 +16,7 @@ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.orig
 reflector -c Canada -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
 # install some stuff
-pacman -S --noconfirm base-devel git
+pacman -S --noconfirm base-devel git vim
 
 # bluetooth mouse
 pacman -S --noconfirm bluez bluez-utils
