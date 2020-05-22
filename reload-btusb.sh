@@ -1,6 +1,7 @@
 #!/bin/bash
 
 modprobe -r btusb
-sleep 1
+sleep 2
 modprobe btusb
+sleep 3
 systemctl restart bluetooth.service
