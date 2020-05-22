@@ -2,6 +2,7 @@ set -e
 set -x
 
 # configure wifi
+rfkill unblock all
 cp home.netctl /etc/netctl/home
 read -p "Wifi SSID: " SSID
 read -p "Wifi Key: " SSIDKEY
@@ -9,6 +10,7 @@ sed -i "s/%SSID%/$SSID/" /etc/netctl/home
 sed -i "s/%KEY%/$SSIDKEY/" /etc/netctl/home
 netctl start home
 netctl enable home
+sleep 5
 
 # setup reflector (again, now in the target disk)
 pacman -S --noconfirm reflector
@@ -24,9 +26,11 @@ cp blacklist_btusb.conf /etc/modprobe.d/
 cp reload-btusb.sh /usr/bin/
 cp reload-btusb.service /etc/systemd/system/
 /usr/bin/reload-btusb.sh
+sleep 5
 systemctl enable reload-btusb.service
 systemctl start bluetooth.service
 systemctl enable bluetooth.service
+sleep 5
 MOUSE=34:88:5D:AD:1A:4D
 bluetoothctl << EOF
 power on
@@ -44,8 +48,8 @@ sed -i "s/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
 useradd -m -G wheel ryan
 
 # setup gui
-pacman -S xorg
-pacman -S openbox lightdm lightdm-gtk-greeter obconf pcmanfm tint2 termite nitrogen
+pacman -S --noconfirm xorg
+pacman -S --noconfirm openbox lightdm lightdm-gtk-greeter obconf pcmanfm tint2 termite nitrogen
 systemctl enable lightdm.service
 
 # touchpad and mouse tweaks
@@ -58,3 +62,6 @@ sed -i "s/^Exec=.*/Exec=env GDK_SCALE=2 GDK_DPI_SCALE=0.5 lightdm-gtk-greeter/" 
 cp hidpi.sh /etc/profile.d/
 cp hidpi.sh /root/.Xsession
 cp .Xresources /home/ryan/
+
+set +x
+echo "Reboot!"
