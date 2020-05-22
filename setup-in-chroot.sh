@@ -32,9 +32,7 @@ grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi
 sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet i915.edp_vswing=2"/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
-set +x
-read -p "Root password:" ROOT_PWD 
-echo root:$ROOT_PWD | chpasswd 
+# change this later
+echo root:root | chpasswd 
 
-set -x
 exit
