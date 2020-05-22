@@ -31,4 +31,8 @@ sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"/GRUB_CMDLINE_LINUX_DEFAU
 grub-mkconfig -o /boot/grub/grub.cfg
 
 set +x
-echo "Set a root password now with passwd then exit the chroot..."
+echo "Set a root password:"
+passwd 
+
+set -x
+exit
