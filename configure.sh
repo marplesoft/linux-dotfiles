@@ -77,9 +77,14 @@ cp hidpi.sh /etc/profile.d/
 cp hidpi.sh /root/.Xsession
 cp .Xresources /home/ryan/
 
-mv /root/linux-dotfiles/ /home/ryan
-pacman -S --noconfirm go #needed by yay later
-runuser -l ryan -c 'cd linux-dotfiles; ./configure_as_ryan.sh'
+cp /root/linux-dotfiles/ /home/ryan
+
+# install yay
+pacman -S --noconfirm go # dep of yay
+runuser -l ryan -c 'gpg --recv-keys 8F173680; git clone https://aur.archlinux.org/yay.git /tmp/yay; cd /tmp/yay; makepkg -s --noconfirm'
+pacman -U --noconfirm /tmp/yay/yay-*pkg.tar.xz
+
+./link.sh
 
 set +x
 echo "Reboot!"
